@@ -1,0 +1,14 @@
+bool isPresent(TreeNode<int>* root, int x) {
+    if(root == NULL)
+        return NULL;
+    bool ans;
+    if(root->data == x)
+        return true;
+    int childcount = root->children.size();
+    for(int i=0; i<childcount; i++)
+    {
+         if(isPresent(root->children[i],x))
+             return true;
+    }
+    return false;
+}
