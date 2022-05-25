@@ -1,0 +1,24 @@
+bool areIdentical(TreeNode<int> *root1, TreeNode<int> * root2) {
+     if(root1==NULL)
+     {
+         if(root2==NULL)
+             return true;
+         else
+             return false;
+     }
+    if(root1->data != root2->data)
+        return false;
+    
+    int childrencount1=root1->children.size();
+    int childrencount2=root2->children.size();
+    
+    if(childrencount1 != childrencount2)
+        return false;
+    for(int i=0; i<childrencount1; i++)
+    {
+        if(!areIdentical(root1->children[i],root2->children[i]))//it will always get a false only so it opposite is true
+            return false;
+    }
+    //this run only when we dont get a false any where in tree
+    return true;
+}
