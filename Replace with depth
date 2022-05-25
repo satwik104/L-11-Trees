@@ -1,0 +1,14 @@
+void helper(TreeNode<int>* root, int depth)
+{
+    int childcount = root->children.size();
+        root->data=depth;
+    for(int i=0; i<childcount; i++)
+    {
+       helper(root->children[i],depth+1);
+    }
+}
+void replaceWithDepthValue(TreeNode<int>* root) {
+    if(root==NULL)
+        return;
+    helper(root,0);
+}
