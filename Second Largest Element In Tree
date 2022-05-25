@@ -1,0 +1,37 @@
+#include<queue>
+TreeNode<int>* getSecondLargestNode(TreeNode<int>* root) {
+    if(root ==NULL)
+        return NULL;
+    int childcount=root->children.size();
+    if(childcount==0)
+        return NULL;
+    //now we are sure that there is atleast a root and child
+    TreeNode<int>* largest = new TreeNode<int>(root->data);
+    TreeNode<int>* secondlargest = new TreeNode<int>(INT_MIN);
+    //so till now we have assigned some values to largest and second largest
+    //now we start traversing upon the tree with help of queue
+    queue<TreeNode<int>*> q;
+    q.push(root);
+    while(!q.empty())
+    {
+        TreeNode<int>* curr = q.front();
+        q.pop();
+        childcount=curr->children.size();
+        for(int i=0; i<childcount; i++)
+        {
+            q.push(curr->children[i]);
+             if(curr->children[i]->data > largest->data)
+                {
+                    secondlargest=largest;
+                    largest = curr->children[i];
+                }
+            if(curr->children[i]->data > secondlargest->data && curr->children[i]->data < largest->data)
+            {
+              
+                  secondlargest = curr->children[i];
+            }
+            
+        }
+    }
+		return secondlargest;    
+}
