@@ -1,0 +1,32 @@
+TreeNode<int>* getNextLargerElement(TreeNode<int>* root, int x) {
+    if(root == NULL)
+        return NULL;
+    //we need to return just greater element the largest
+    int childcount = root->children.size();
+    if(childcount == 0)//base case
+    {
+        if(root->data > x)
+            return root;
+        else
+            return NULL;
+    }
+    TreeNode<int>* ans=NULL;
+    if(root->data>x)
+    {
+        ans=root;
+    }
+    for(int i=0; i<childcount; i++)
+    {
+        TreeNode<int>* temp = getNextLargerElement(root->children[i],x);
+        if(temp != NULL)//BECOZ if NULL is returned from above if then their will be run time error
+    {
+             if(ans==NULL||temp->data<ans->data)//becoz ans have initially NULL in it so may be ans still have a NULL
+        {
+            ans = temp;
+        }
+    }
+        else 
+            continue;
+    }
+    return ans;
+}
