@@ -1,0 +1,22 @@
+
+void printLevelWise(TreeNode<int>* root) {
+    if(root==NULL)
+        return;
+    queue<TreeNode<int>*> pendingnodes;//to tell queue that nrml int are not coming but specl treenodes are coming of int type
+    pendingnodes.push(root);//pushed root in queue
+    while(pendingnodes.size()!=0)//till the queue is not empty
+    {
+        TreeNode<int>* front = pendingnodes.front();//making a treenode type pointer variable to store front of queue
+        pendingnodes.pop();//removing it from queue
+        cout<<front->data<<":";//printing its data
+        for(int i=0; i<front->children.size(); i++)//printing its children
+        {
+            if(i==front->children.size()-1)//this extra is for removing "," from last print
+                cout<<front->children[i]->data;
+            else
+                cout<<front->children[i]->data<<",";
+            pendingnodes.push(front->children[i]);//pushing back the childes in the queue
+        }
+        cout<<endl;
+    }
+}
