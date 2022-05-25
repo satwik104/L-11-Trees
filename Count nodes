@@ -1,0 +1,13 @@
+int getLargeNodeCount(TreeNode<int>* root, int x) {
+    if(root == NULL)
+        return NULL;
+    int count=0;
+    if(root->data>x)
+        count++;
+    int childcount=root->children.size();
+    for(int i=0; i<childcount; i++)
+    {
+        count += getLargeNodeCount(root->children[i],x);
+    }
+    return count;
+}
