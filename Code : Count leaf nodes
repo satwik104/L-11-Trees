@@ -1,0 +1,15 @@
+int getLeafNodeCount(TreeNode<int>* root) {
+    if(root == NULL)
+        return NULL;
+    int leaf=0;
+    if(root->children.size()==0)
+    {
+        leaf = 1;
+        return leaf;
+    }
+    for(int i=0; i<root->children.size(); i++)
+    {
+       leaf += getLeafNodeCount(root->children[i]);
+    }
+    return leaf;
+}
