@@ -1,0 +1,30 @@
+//this is our helping function for calculating the sum of root and immidiate nodes
+int sumnode(TreeNode<int>* root)
+{
+    int sum=root->data;
+    int childcount = root->children.size();
+    for(int i=0; i<childcount; i++)
+        sum=sum + root->children[i]->data;
+    return sum;
+}
+TreeNode<int>* maxSumNode(TreeNode<int>* root) {
+    if(root==NULL)
+        return NULL;
+    TreeNode<int>* ans = root;
+    int maxsum=sumnode(root);//sum of this root will be in calculated by help function
+    int childcount = root->children.size();
+    //recursive work
+    for(int i=0; i<childcount; i++)
+    {
+        TreeNode<int>* temp = maxSumNode(root->children[i]);
+        int tempsum = sumnode(temp);
+        
+        if(tempsum>maxsum)//means previous sum was smaller so update the max
+        {
+            maxsum = tempsum;
+            ans=temp;
+        }
+    }
+    return ans;
+    
+}
